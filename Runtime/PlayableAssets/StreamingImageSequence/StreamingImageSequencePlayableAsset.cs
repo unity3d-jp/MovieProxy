@@ -213,6 +213,10 @@ namespace UnityEngine.StreamingImageSequence {
                 m_loadRequested = new bool[m_imagePaths.Count];
             }
 
+            //test
+            AnimationCurve curve = GetAndValidateAnimationCurve();
+            Debug.Log(curve.keys.Length);
+
             StreamingImageSequencePlugin.GetNativTextureInfo(filename, out readResult);
             //Debug.Log("readResult.readStatus " + readResult.readStatus + "Loading " + filename);
             if (readResult.ReadStatus == 0) {
@@ -237,7 +241,8 @@ namespace UnityEngine.StreamingImageSequence {
             if (null == m_imagePaths || index < 0 || index >= m_imagePaths.Count || string.IsNullOrEmpty(m_imagePaths[index])) {
                 return false;
             }
-           
+
+          
             string filename = LoadRequest(index,isBlocking, out ReadResult readResult);
 
             if (null == m_texture &&  readResult.ReadStatus == (int)LoadStatus.Loaded)
@@ -312,6 +317,7 @@ namespace UnityEngine.StreamingImageSequence {
 
 //----------------------------------------------------------------------------------------------------------------------
         public void ValidateAnimationCurve() {
+            Debug.Log("ValidateAnimationCurve");
             AnimationCurve curve = GetAndValidateAnimationCurve();
             RefreshAnimationCurve(curve);
         }
