@@ -2,16 +2,40 @@ yamato_name: StreamingImageSequence
 test_editors:
   - version: 2019.2
   - version: 2019.3
-test_platforms:
+platforms:
   - name: win
     type: Unity::VM
-    image: package-ci/win10:stable
+    image:         package-ci/win10:stable
+    prepack_image: package-ci/win10:stable
     flavor: b1.large
+    plugin_path: Runtime/Plugins/x64/**
   - name: mac
     type: Unity::VM::osx
-    image: package-ci/mac:stable
+    image:         package-ci/mac:stable     
+    prepack_image: slough-ops/macos-10.14-xcode
     flavor: m1.mac
+    plugin_path: Runtime/Plugins/OSX/**
 ---
+{% for platform in platforms %}
+prepack_{{ platform.name }}:
+  name: Prepack {{ yamato_name }} on {{ platform.name }}
+  agent:
+    type: {{ platform.type }}
+    image: {{ platform.prepack_image }}
+    flavor: {{ platform.flavor }}
+  commands:
+{% if platform.name == "mac" -%}
+    - cd Plugins~/Project && xcodebuild -configuration Release build && cd ../..
+{% else -%}
+    - cd . 
+{% endif -%}
+  artifacts:
+    {{ yamato_name }}_{{ platform.name }}_prepack_artifacts:
+      paths:
+        - {{platform.plugin_path}}
+{% endfor %}
+
+
 pack:
   name: Pack {{ yamato_name }}
   agent:
@@ -20,14 +44,22 @@ pack:
     flavor: b1.large
   commands:
     - npm install upm-ci-utils@stable -g --registry https://api.bintray.com/npm/unity/unity-npm
+{% for platform in platforms %}
+    - unzip -qq -o streamingImageSequence_{{ platform.name }}_prepack_artifacts*
+    - rm streamingImageSequence_{{ platform.name }}_prepack_artifacts*
+{% endfor %}
     - upm-ci package pack
   artifacts:
     {{ yamato_name }}_pack_artifacts:
       paths:
         - "upm-ci~/**/*"
-
+  dependencies:
+{% for platform in platforms %}
+    - .yamato/upm-ci-{{ yamato_name }}.yml#prepack_{{ platform.name }}
+{% endfor %}
+    
 {% for editor in test_editors %}
-{% for platform in test_platforms %}
+{% for platform in platforms %}
 test_{{ platform.name }}_{{ editor.version }}:
   name : Test {{ yamato_name }} using {{ editor.version }} on {{ platform.name }}
   agent:
@@ -36,7 +68,7 @@ test_{{ platform.name }}_{{ editor.version }}:
     flavor: {{ platform.flavor}}
   commands:
     - npm install upm-ci-utils@stable -g --registry https://api.bintray.com/npm/unity/unity-npm
-    - upm-ci package test --unity-version {{ editor.version }}
+    - upm-ci package test --unity-version {{ editor.version }}    
   triggers:
     branches:
       only:

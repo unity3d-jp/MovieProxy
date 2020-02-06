@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DE5EC2AF1F8C214E0041DB03 /* Loader.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE5EC2AE1F8C214E0041DB03 /* Loader.mm */; };
+		27C33CC423E41B5D005D468F /* CriticalSectionObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27C33CC023E41B5D005D468F /* CriticalSectionObject.cpp */; };
+		27C33CC723E42255005D468F /* CriticalSectionController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27C33CC623E42255005D468F /* CriticalSectionController.cpp */; };
+		27C33CCD23E4265C005D468F /* CriticalSection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27C33CCB23E4265C005D468F /* CriticalSection.cpp */; };
+		27C33CD123E4367C005D468F /* LoaderUtility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27C33CCF23E4367C005D468F /* LoaderUtility.cpp */; };
+		54D482EB23EA8DFD009281C2 /* LoaderMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 54D482EA23EA8DFD009281C2 /* LoaderMac.mm */; };
+		54D482F023EA957D009281C2 /* stb_image_resize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54D482EE23EA957D009281C2 /* stb_image_resize.cpp */; };
 		DE5EC2B21F8D312D0041DB03 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE5EC2B11F8D312D0041DB03 /* CoreGraphics.framework */; };
 		DED204221F8FAFCB000C75CE /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DED204211F8FAFCB000C75CE /* Metal.framework */; };
 		F435F5F21F5D4C5700F8DB6A /* Drawer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F435F5F01F5D4C5700F8DB6A /* Drawer.cpp */; };
@@ -22,7 +27,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		DE5EC2AE1F8C214E0041DB03 /* Loader.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = Loader.mm; path = ../Loader/Loader.mm; sourceTree = "<group>"; };
+		27BE207723E04E4000D8F415 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		27C33CBA23E3D8E5005D468F /* ReadStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ReadStatus.h; path = ../CommonLib/ReadStatus.h; sourceTree = "<group>"; };
+		27C33CBB23E3FA0F005D468F /* FileType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FileType.h; path = ../Loader/FileType.h; sourceTree = "<group>"; };
+		27C33CBF23E419AD005D468F /* Types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Types.h; path = ../CommonLib/Types.h; sourceTree = "<group>"; };
+		27C33CC023E41B5D005D468F /* CriticalSectionObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CriticalSectionObject.cpp; path = ../CommonLib/CriticalSectionObject.cpp; sourceTree = "<group>"; };
+		27C33CC123E41B5D005D468F /* CriticalSectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CriticalSectionController.h; path = ../CommonLib/CriticalSectionController.h; sourceTree = "<group>"; };
+		27C33CC323E41B5D005D468F /* CriticalSectionObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CriticalSectionObject.h; path = ../CommonLib/CriticalSectionObject.h; sourceTree = "<group>"; };
+		27C33CC623E42255005D468F /* CriticalSectionController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CriticalSectionController.cpp; path = ../CommonLib/CriticalSectionController.cpp; sourceTree = "<group>"; };
+		27C33CCB23E4265C005D468F /* CriticalSection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CriticalSection.cpp; path = ../CommonLib/CriticalSection.cpp; sourceTree = "<group>"; };
+		27C33CCC23E4265C005D468F /* CriticalSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CriticalSection.h; path = ../CommonLib/CriticalSection.h; sourceTree = "<group>"; };
+		27C33CCE23E42851005D468F /* CriticalSectionType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CriticalSectionType.h; path = ../CommonLib/CriticalSectionType.h; sourceTree = "<group>"; };
+		27C33CCF23E4367C005D468F /* LoaderUtility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LoaderUtility.cpp; path = ../Loader/LoaderUtility.cpp; sourceTree = "<group>"; };
+		27C33CD023E4367C005D468F /* LoaderUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoaderUtility.h; path = ../Loader/LoaderUtility.h; sourceTree = "<group>"; };
+		27C33CD223E4375D005D468F /* ReadResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ReadResult.h; path = ../CommonLib/ReadResult.h; sourceTree = "<group>"; };
+		54D482EA23EA8DFD009281C2 /* LoaderMac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LoaderMac.mm; path = ../Loader/Mac/LoaderMac.mm; sourceTree = "<group>"; };
+		54D482EE23EA957D009281C2 /* stb_image_resize.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = stb_image_resize.cpp; path = ../../../External/stb/stb_image_resize.cpp; sourceTree = "<group>"; };
+		54D482EF23EA957D009281C2 /* stb_image_resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stb_image_resize.h; path = ../../../External/stb/stb_image_resize.h; sourceTree = "<group>"; };
 		DE5EC2B11F8D312D0041DB03 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		DED204211F8FAFCB000C75CE /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		F435F5DE1F5D4B9A00F8DB6A /* Project.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Project.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +77,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		54D482E923EA8DF0009281C2 /* Mac */ = {
+			isa = PBXGroup;
+			children = (
+				54D482EA23EA8DFD009281C2 /* LoaderMac.mm */,
+			);
+			name = Mac;
+			sourceTree = "<group>";
+		};
+		54D482EC23EA955B009281C2 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				54D482ED23EA9564009281C2 /* stb */,
+			);
+			path = External;
+			sourceTree = "<group>";
+		};
+		54D482ED23EA9564009281C2 /* stb */ = {
+			isa = PBXGroup;
+			children = (
+				54D482EE23EA957D009281C2 /* stb_image_resize.cpp */,
+				54D482EF23EA957D009281C2 /* stb_image_resize.h */,
+			);
+			path = stb;
+			sourceTree = "<group>";
+		};
 		DE5EC2B01F8D312D0041DB03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +115,8 @@
 		F435F5D51F5D4B9A00F8DB6A = {
 			isa = PBXGroup;
 			children = (
+				54D482EC23EA955B009281C2 /* External */,
+				27BE207723E04E4000D8F415 /* Config.xcconfig */,
 				F435F5EF1F5D4C3300F8DB6A /* Loader */,
 				F435F5EE1F5D4C2800F8DB6A /* CommonLib */,
 				F435F5ED1F5D4C1800F8DB6A /* Drawer */,
@@ -112,8 +160,18 @@
 		F435F5EE1F5D4C2800F8DB6A /* CommonLib */ = {
 			isa = PBXGroup;
 			children = (
+				27C33CCB23E4265C005D468F /* CriticalSection.cpp */,
+				27C33CCC23E4265C005D468F /* CriticalSection.h */,
+				27C33CC623E42255005D468F /* CriticalSectionController.cpp */,
+				27C33CC123E41B5D005D468F /* CriticalSectionController.h */,
+				27C33CC023E41B5D005D468F /* CriticalSectionObject.cpp */,
+				27C33CC323E41B5D005D468F /* CriticalSectionObject.h */,
+				27C33CCE23E42851005D468F /* CriticalSectionType.h */,
+				27C33CBF23E419AD005D468F /* Types.h */,
 				F435F5F31F5D4C6200F8DB6A /* CommonLib.cpp */,
 				F435F5F41F5D4C6200F8DB6A /* CommonLib.h */,
+				27C33CBA23E3D8E5005D468F /* ReadStatus.h */,
+				27C33CD223E4375D005D468F /* ReadResult.h */,
 			);
 			name = CommonLib;
 			sourceTree = "<group>";
@@ -121,9 +179,12 @@
 		F435F5EF1F5D4C3300F8DB6A /* Loader */ = {
 			isa = PBXGroup;
 			children = (
-				DE5EC2AE1F8C214E0041DB03 /* Loader.mm */,
+				54D482E923EA8DF0009281C2 /* Mac */,
+				27C33CBB23E3FA0F005D468F /* FileType.h */,
 				F435F5F61F5D4C7F00F8DB6A /* Loader.cpp */,
 				F435F5F71F5D4C7F00F8DB6A /* Loader.h */,
+				27C33CCF23E4367C005D468F /* LoaderUtility.cpp */,
+				27C33CD023E4367C005D468F /* LoaderUtility.h */,
 			);
 			name = Loader;
 			sourceTree = "<group>";
@@ -138,6 +199,7 @@
 				F435F5DA1F5D4B9A00F8DB6A /* Sources */,
 				F435F5DB1F5D4B9A00F8DB6A /* Frameworks */,
 				F435F5DC1F5D4B9A00F8DB6A /* Resources */,
+				27BE207C23E121B600D8F415 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -169,6 +231,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = F435F5D51F5D4B9A00F8DB6A;
@@ -191,19 +254,44 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		27BE207C23E121B600D8F415 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cp -R $CODESIGNING_FOLDER_PATH $POST_BUILD_COPY_PATH\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F435F5DA1F5D4B9A00F8DB6A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27C33CC423E41B5D005D468F /* CriticalSectionObject.cpp in Sources */,
 				F49D2D511F5D4F0000DDF068 /* Drawer.mm in Sources */,
 				F4F9C1221FC552E700876739 /* RenderAPI_Metal.mm in Sources */,
+				54D482EB23EA8DFD009281C2 /* LoaderMac.mm in Sources */,
 				F435F5F51F5D4C6200F8DB6A /* CommonLib.cpp in Sources */,
 				F4F9C1201FC552C200876739 /* RenderAPI_OpenGLCoreES.cpp in Sources */,
 				F4F9C11C1FC549A100876739 /* RenderAPI.cpp in Sources */,
+				27C33CD123E4367C005D468F /* LoaderUtility.cpp in Sources */,
 				F435F5F81F5D4C7F00F8DB6A /* Loader.cpp in Sources */,
 				F4F9C11F1FC552C200876739 /* RenderAPI_OpenGL2.cpp in Sources */,
-				DE5EC2AF1F8C214E0041DB03 /* Loader.mm in Sources */,
+				27C33CCD23E4265C005D468F /* CriticalSection.cpp in Sources */,
+				54D482F023EA957D009281C2 /* stb_image_resize.cpp in Sources */,
+				27C33CC723E42255005D468F /* CriticalSectionController.cpp in Sources */,
 				F435F5F21F5D4C5700F8DB6A /* Drawer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -213,6 +301,7 @@
 /* Begin XCBuildConfiguration section */
 		F435F5E21F5D4B9A00F8DB6A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27BE207723E04E4000D8F415 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -252,6 +341,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				"HEADER_SEARCH_PATHS[arch=*]" = ../;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -261,6 +351,7 @@
 		};
 		F435F5E31F5D4B9A00F8DB6A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27BE207723E04E4000D8F415 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -294,6 +385,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				"HEADER_SEARCH_PATHS[arch=*]" = ../;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
@@ -302,6 +394,7 @@
 		};
 		F435F5E51F5D4B9A00F8DB6A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27BE207723E04E4000D8F415 /* Config.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 9E4G6D46Z9;
@@ -316,6 +409,7 @@
 		};
 		F435F5E61F5D4B9A00F8DB6A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27BE207723E04E4000D8F415 /* Config.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 9E4G6D46Z9;

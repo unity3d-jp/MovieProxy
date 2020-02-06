@@ -5,6 +5,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Win">
+      <UniqueIdentifier>{c61f6c84-2170-4f1d-9b54-7121caaed8d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -14,11 +17,17 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Loader.h" />
     <ClInclude Include="TGALoader.h" />
+    <ClInclude Include="FileType.h" />
+    <ClInclude Include="LoaderUtility.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Loader.cpp" />
     <ClCompile Include="TGALoader.cpp" />
+    <ClCompile Include="LoaderUtility.cpp" />
+    <ClCompile Include="Win\LoaderWin.cpp">
+      <Filter>Win</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

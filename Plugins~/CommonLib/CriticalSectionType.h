@@ -1,0 +1,22 @@
+#pragma once
+
+#include "CriticalSectionObject.h"
+
+namespace StreamingImageSequencePlugin {
+
+enum CriticalSectionType {
+    //Texture section. Must start from 0
+    CRITICAL_SECTION_TYPE_FULL_TEXTURE = 0,
+    CRITICAL_SECTION_TYPE_PREVIEW_TEXTURE,
+
+    //Others
+    CRITICAL_SECTION_TYPE_INSTANCE_ID_TO_FILENAME,
+    CRITICAL_SECTION_TYPE_INSTANCE_ID_TO_UNITY_TEXTURE_PTR,
+    CRITICAL_SECTION_TYPE_LOADING_COUNTER,
+    CRITICAL_SECTION_TYPE_RESETTING,
+    CRITICAL_SECTION_TYPE_MAX = 32
+};
+
+const uint32_t MAX_CRITICAL_SECTION_TYPE_TEXTURES = CRITICAL_SECTION_TYPE_PREVIEW_TEXTURE + 1;
+
+} //end namespace

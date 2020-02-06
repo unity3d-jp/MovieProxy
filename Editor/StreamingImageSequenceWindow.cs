@@ -12,7 +12,7 @@ using UnityEngine.StreamingImageSequence;
 
 namespace UnityEditor.StreamingImageSequence
 { 
-    public class MovieProxyWindow : EditorWindow
+    public class StreamingImageSequenceWindow : EditorWindow
     {
         private GUIStyle m_windowStyle = null;
         private GUIStyle m_boxStyle = null;
@@ -135,7 +135,7 @@ namespace UnityEditor.StreamingImageSequence
             GUI.backgroundColor = backColor;
             GUI.EndScrollView();
 
- //           BGJobPictureLoader.m_sUpdated = false;
+ //           ImageLoadBGTask.m_sUpdated = false;
 
 
         }
@@ -335,7 +335,7 @@ namespace UnityEditor.StreamingImageSequence
                 m_MovieProxyPlayableAssetToColorArray.Add(asset, new BGJobCacheParam(asset));
             }
             /*
-                        if (BGJobPictureLoader.m_sUpdated  )
+                        if (ImageLoadBGTask.m_sUpdated  )
                             new BGJobCacheChecker( m_MovieProxyPlayableAssetToColorArray[asset]);
             
             UInt32[] colorArray = m_MovieProxyPlayableAssetToColorArray[asset].m_collorArray;

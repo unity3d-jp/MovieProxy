@@ -59,7 +59,7 @@ namespace UnityEngine.StreamingImageSequence
                 if (null == playableAsset)
                     continue;
                 
-                playableAsset.Setup(clip);
+                playableAsset.OnAfterTrackDeserialize(clip);
             }
         }
 

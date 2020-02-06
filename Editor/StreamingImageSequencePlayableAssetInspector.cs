@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Collections.Generic;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.StreamingImageSequence;
@@ -10,23 +8,26 @@ namespace UnityEditor.StreamingImageSequence {
     [CustomEditor(typeof(StreamingImageSequencePlayableAsset))]
     public class StreamingImageSequencePlayableAssetInspector : Editor {
 
+//----------------------------------------------------------------------------------------------------------------------
         void OnEnable() {
             m_isImageListDirty = true;
             m_asset = target as StreamingImageSequencePlayableAsset;
+
         }
 
-//---------------------------------------------------------------------------------------------------------------------
+        
+//----------------------------------------------------------------------------------------------------------------------
 
         void OnDisable() {
             m_asset = null;
         }
 
-//---------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
         public override void OnInspectorGUI() {
             if (null == m_asset)
                 return;
-
+            
             EditorGUI.BeginChangeCheck();
             serializedObject.Update();
 
@@ -65,15 +66,20 @@ namespace UnityEditor.StreamingImageSequence {
                 }
             }
 
-
+            if (GUILayout.Button("Reset Curve")) {
+                //[TODO-sin:2020-1-29] Support undo for this
+                m_asset.ResetAnimationCurve();
+                
+            }
+            
 
             serializedObject.ApplyModifiedProperties();
             EditorGUI.EndChangeCheck();
 
         }
 
+//----------------------------------------------------------------------------------------------------------------------
 
-//---------------------------------------------------------------------------------------------------------------------
         private void DoFolderGUI() {
             string prevFolder = m_asset.GetFolder();
             string newLoadPath = DrawFolderSelector ("Image Sequence", "Select Folder", 
@@ -100,7 +106,7 @@ namespace UnityEditor.StreamingImageSequence {
             }
         }
 
-//---------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
         private string DrawFolderSelector(string label, 
             string dialogTitle, 
             string fieldValue, 
@@ -154,7 +160,7 @@ namespace UnityEditor.StreamingImageSequence {
             return newDirPath;
         }        
 
-//---------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
         private void DoImageGUI()
         {
             if (m_isImageListDirty)
@@ -166,7 +172,7 @@ namespace UnityEditor.StreamingImageSequence {
             m_imageList.DoLayoutList();
         }
 
-//---------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
         private void RefreshImageList()
         {
             m_imageList = new ReorderableList(m_asset.GetImagePathsNonGeneric(), typeof(string), true, false, false, false) {
@@ -175,16 +181,15 @@ namespace UnityEditor.StreamingImageSequence {
             };
         }
 
-//---------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
         private void ImportImages(string path) {
             ImageSequenceImporter.ImportPictureFiles(PictureFileImporterParam.Mode.StreamingAssets, path, m_asset);
             m_isImageListDirty = true;
         }
 
-//---------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
         private StreamingImageSequencePlayableAsset m_asset = null;
 
-        
         private ReorderableList m_imageList;
         private bool m_isImageListDirty;
         private bool m_imageListFoldout;

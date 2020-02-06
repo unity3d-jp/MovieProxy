@@ -5,6 +5,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Win">
+      <UniqueIdentifier>{55c23757-400d-4e2a-b3a0-ecb99f485afe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -13,10 +16,23 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="CommonLib.h" />
+    <ClInclude Include="CriticalSection.h" />
+    <ClInclude Include="CriticalSectionController.h" />
+    <ClInclude Include="CriticalSectionObject.h" />
+    <ClInclude Include="CriticalSectionType.h" />
+    <ClInclude Include="ReadResult.h" />
+    <ClInclude Include="ReadStatus.h" />
+    <ClInclude Include="Types.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="CommonLib.cpp" />
+    <ClCompile Include="CriticalSection.cpp" />
+    <ClCompile Include="CriticalSectionController.cpp" />
+    <ClCompile Include="CriticalSectionObject.cpp" />
+    <ClCompile Include="Win\CommonLibWin.cpp">
+      <Filter>Win</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

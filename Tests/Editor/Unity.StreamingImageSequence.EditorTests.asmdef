@@ -3,7 +3,9 @@
     "references": [
         "GUID:27619889b8ba8c24980f49ee34dbb44a",
         "GUID:0acc523941302664db1f4e527237feb3",
-        "GUID:8ce817a30579cb44d9c5a62807fd9fd5"
+        "GUID:8ce817a30579cb44d9c5a62807fd9fd5",
+        "GUID:83bf442171810a04381b4d745b2fdb72",
+        "GUID:f06555f75b070af458a003d92f9efb00"
     ],
     "includePlatforms": [
         "Editor"
@@ -18,5 +20,6 @@
     "defineConstraints": [
         "UNITY_INCLUDE_TESTS"
     ],
-    "versionDefines": []
+    "versionDefines": [],
+    "noEngineReferences": false
 }

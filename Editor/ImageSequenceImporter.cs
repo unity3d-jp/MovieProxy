@@ -11,22 +11,11 @@ namespace UnityEditor.StreamingImageSequence {
 
     public static class ImageSequenceImporter
     {
-        public const string PNG_EXTENSION = "png";
-        public const string TGA_EXTENSION = "tga";
+        private const string PNG_EXTENSION = "png";
+        private const string TGA_EXTENSION = "tga";
 
-        static string versionString = "StreamingImageSequence version 0.2.1";
 
-        [MenuItem("Assets/Streaming Image Sequence/Create Clip", false, 1)]
-        private static void RegisterFilesAndCreateStreamingImageSequence()
-        {
-            string path = EditorUtility.OpenFilePanel("Open File", "", PNG_EXTENSION + "," + TGA_EXTENSION);
-            if (string.IsNullOrEmpty(path)) {
-                return;
-            }
-
-            ImportPictureFiles(PictureFileImporterParam.Mode.StreamingAssets, path, null);
-        }
-
+        /// Import images in the path to create StreamingImageSequence assets with those images
         /// <param name="importerMode"> Importer mode: StreamingAssets or SpriteAnimation</param>
         /// <param name="path"> Can be a directory path or a file path</param>
         public static void ImportPictureFiles(PictureFileImporterParam.Mode importerMode, string path, 
@@ -101,27 +90,9 @@ namespace UnityEditor.StreamingImageSequence {
             }
         }
 
-        /*
-
-        [MenuItem("Assets/Streaming Image Sequence/Create MovieProxy/Register files", false, 6)]
-        static void ImportAndCreateSpriteAnimation()
-        {
-            importPictureFiles(PictureFileImporterParam.Mode.SpriteAnimation);
-
-        }
-        */
-
-        [MenuItem("Assets/Streaming Image Sequence/Reset",false,50)]
-        static void Reset()
-        {
-            UpdateManager.ResetPlugin();
-        }
-        [MenuItem("Assets/Streaming Image Sequence/Show version",false,51)]
-        static void ShowVersion()
-        {
-            Debug.Log(versionString);
-        }
-        public static void Import(PictureFileImporterParam param)
+//----------------------------------------------------------------------------------------------------------------------
+        
+        internal static void Import(PictureFileImporterParam param)
         {
             if (param.DoNotCopy)
             {

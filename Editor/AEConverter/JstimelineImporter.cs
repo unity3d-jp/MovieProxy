@@ -18,22 +18,17 @@ public class JstimelineImporter : ScriptedImporter
         if (ctx.assetPath.StartsWith("Packages/com.unity.streaming-image-sequence/Tests"))
             return;
         
-        CreateTimeline(ctx.assetPath);
+        ImportTimeline(ctx.assetPath);
     }
 
-    [MenuItem("Assets/Streaming Image Sequence/Import AE Timeline", false, 10)]
-    static void CreateTimeline()
-    {
-        string strPath = EditorUtility.OpenFilePanel("Open File", "", "jstimeline");
-        JstimelineImporter.CreateTimeline(strPath);
-    }
 
 //---------------------------------------------------------------------------------------------------------------------
 
-    //TODO-sin: 2019-12-27: Add tests
-    //1. Importing jstimeline inside Assets folder
-    //2. Importing jstimeline outside the project
-    static void CreateTimeline(string jsTimelinePath) {
+    /// <summary>
+    /// Import a timeline file exported from DCC tools into the scene in the Timeline object
+    /// </summary>
+    /// <param name="jsTimelinePath">The path of the file</param>
+    public static void ImportTimeline(string jsTimelinePath) {
 
         // prepare asset name, paths, etc
         string assetName = Path.GetFileNameWithoutExtension(jsTimelinePath);
@@ -186,7 +181,9 @@ public class JstimelineImporter : ScriptedImporter
         //cause crash if this is called inside of OnImportAsset()
         UnityEditor.EditorApplication.delayCall += () => {
             AssetDatabase.Refresh();
-            Selection.activeGameObject = director.gameObject;
+            if (null != director) {
+                Selection.activeGameObject = director.gameObject;
+            }
         };
     }
 

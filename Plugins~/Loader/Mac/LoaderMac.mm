@@ -1,4 +1,3 @@
-//
 //  Loader.mm
 //  Project
 //
@@ -9,10 +8,10 @@
 #import <Foundation/Foundation.h>
 #include <ApplicationServices/ApplicationServices.h>
 
-#include "stdafx.h"
-#include "../CommonLib/CommonLib.h"
+#include "CommonLib/CommonLib.h"
+
+//Loader
 #include "Loader.h"
-#include "TGALoader.h"
 
 #define DEBUG_MAC_DRAWING (0)
 
@@ -27,9 +26,8 @@ CGImageRef CGImageRefLoad(const char *filename) {
     return image;
 }
 
-u8* CGImageRefRetrievePixelData(CGImageRef image) {
-    NSInteger width = CGImageGetWidth(image);
-    NSInteger height = CGImageGetHeight(image);
+//----------------------------------------------------------------------------------------------------------------------
+u8* CGImageRefRetrievePixelData(const CGImageRef image, u32 width, u32 height) {
     u8* data = (u8*)malloc(width*height*4);
     memset(data,0, width*height*4);
     CGContextRef context = CGBitmapContextCreate(data,
@@ -53,24 +51,35 @@ u8* CGImageRefRetrievePixelData(CGImageRef image) {
     return data;
 }
 
-void* loadPNGFileAndAlloc(const charType* fileName, StReadResult* pResult)
-{
+//----------------------------------------------------------------------------------------------------------------------
+
+void* LoadPNGFileAndAlloc(const charType* fileName, StReadResult* pResult) {
     u8* pBuffer = NULL;
     
-    CGImageRef image = CGImageRefLoad(fileName);
+    const CGImageRef image = CGImageRefLoad(fileName);
     if(image != NULL) {
-        pBuffer =CGImageRefRetrievePixelData(image);
+        const u32 width = (u32) CGImageGetWidth(image);
+        const u32 height = (u32) CGImageGetHeight(image);
+        pBuffer =CGImageRefRetrievePixelData(image, width, height);
         
         if(pBuffer != NULL) {
-            
-            pResult->width  = (u32)CGImageGetWidth(image);
-            pResult->height = (u32)CGImageGetHeight(image);
+            pResult->width  = width;
+            pResult->height = height;
             pResult->buffer = pBuffer;
-            
-            CGImageRelease(image);
+            pResult->readStatus = StreamingImageSequencePlugin::READ_STATUS_SUCCESS;
+        } else {
+            pResult->readStatus = StreamingImageSequencePlugin::READ_STATUS_FAIL;
         }
+        
+        CGImageRelease(image);
     }
     
     return pBuffer; //  pBuffer;
 }
+
+//----------------------------------------------------------------------------------------------------------------------
+void LoadTGAFileAndAlloc(const charType* fileName, StReadResult* pResult) {
+    assert(false);   //Not implemented yet
+}
+//----------------------------------------------------------------------------------------------------------------------
 

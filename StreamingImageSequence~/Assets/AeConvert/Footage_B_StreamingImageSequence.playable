@@ -77,6 +77,7 @@ MonoBehaviour:
     Width: 1684
     Height: 1000
   m_time: 0
+  m_dimensionRatio: 1.684
   m_timelineDefaultAsset: {fileID: 102900000, guid: 8bcebc0ffe2c86e4f82055b17b71d654,
     type: 3}
   m_loadingIndex: -1

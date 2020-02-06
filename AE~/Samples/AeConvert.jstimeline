@@ -1,0 +1,17 @@
+{
+	"Version":0,
+	"Tracks":[
+		{
+			"Position":[888,525,0],
+			"Start":0,
+			"Duration":0.93333333333333,
+			"Footage":"Footage_A.jspseq"
+		},
+		{
+			"Position":[840,525,0],
+			"Start":0.73333333333333,
+			"Duration":1.93333333333333,
+			"Footage":"Footage_B.jspseq"
+		}
+	]
+}

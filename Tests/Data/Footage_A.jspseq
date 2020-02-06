@@ -1,0 +1,19 @@
+{
+	"Version":0,
+	"Resolution":{
+		"Width":1684,
+		"Height":1050
+	},
+	"Pictures":[
+		"png/A_00000.png",
+		"png/A_00001.png",
+		"png/A_00002.png",
+		"png/A_00003.png",
+		"png/A_00004.png",
+		"png/A_00005.png",
+		"png/A_00006.png",
+		"png/A_00007.png",
+		"png/A_00008.png",
+		"png/A_00009.png"
+	]
+}

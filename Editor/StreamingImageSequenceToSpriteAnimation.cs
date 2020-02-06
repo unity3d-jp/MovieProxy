@@ -1,43 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Timeline;
 using UnityEngine.Playables;
 using UnityEngine.UI;
-using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine.Assertions;
 using System.IO;
 using System.Text.RegularExpressions;
 using UnityEngine.StreamingImageSequence;
 
-namespace UnityEditor.StreamingImageSequence
-{ 
+namespace UnityEditor.StreamingImageSequence {
 
-    public class MovieProxyToSpriteAnimation  {
+    public class StreamingImageSequenceToSpriteAnimation  {
 
         static List<Object> orgList;
         static TimelineAsset newAsset;
         static PlayableDirector newPlayableDirector; 
-        [MenuItem("Assets/Streaming Image Sequence/Convert MovieProxy to SpriteAnimation", false, 5)]
-        static private void ConvertToSpriteAnimation()
-        {
 
+        static internal void ConvertIt(GameObject orgGo)
+        {
             orgList = new List<Object>();
-
-            if (Selection.gameObjects == null || 0 == Selection.gameObjects.Length)
-            {
-                return;
-            }
-            foreach (var orgGo in Selection.gameObjects)
-            {
-                ConvertIt(orgGo);
-            }
-        }
-
-        static private void ConvertIt(GameObject orgGo)
-        {
-
 
             var orgPlayableDirector = orgGo.GetComponent<PlayableDirector>() as PlayableDirector;
             Assert.IsTrue(orgPlayableDirector != null, "PlayableDirector component is not attached to this GameObject." + orgGo);

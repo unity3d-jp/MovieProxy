@@ -1,0 +1,17 @@
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+
+PROJECT_OUT_DIR = $(SRCROOT)/../_out/$(PROJECT_NAME)/build
+
+// Intermediate build files
+PROJECT_TEMP_DIR = $(PROJECT_OUT_DIR)/$(PROJECT_NAME).build
+
+// Build-related files for the active build configuration
+CONFIGURATION_BUILD_DIR = $(PROJECT_OUT_DIR)/$CONFIGURATION
+
+// The final product executables and other build products
+BUILT_PRODUCTS_DIR = $(PROJECT_OUT_DIR)/$CONFIGURATION
+
+POST_BUILD_COPY_PATH = $(SRCROOT)/../../Runtime/Plugins/OSX
+

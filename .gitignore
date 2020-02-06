@@ -24,10 +24,7 @@
 release/
 debug/
 dependencies/
-Plugin/Bin
-Plugin/external/libs
 .build/
-Plugin/_build_*
 *.dblite
 excons.cache
 
@@ -42,9 +39,16 @@ Library/
 Temp/
 _tmp/
 _out/
-external/
 ipch/
 
 Adobe\ After\ Effects\ Auto-Save/
 .DS_Store
 
+
+# Plugin
+Plugin~/_out/
+
+# XCode
+*.xcuserdatad/
+Plugins~/**/DerivedData/**
+Plugins~/**/XCBuildData/**

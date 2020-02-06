@@ -32,9 +32,10 @@ namespace UnityEditor.StreamingImageSequence
             {
                 string fileName = m_param.m_asset.GetImagePath(ii);
                 //m_collorArray[ii] = notYet;
-                if ( StreamingImageSequencePlugin.GetNativTextureInfo(m_param.m_asset.GetCompleteFilePath(fileName), out tResult) != IntPtr.Zero)
+                if ( StreamingImageSequencePlugin.GetNativeTextureInfo(m_param.m_asset.GetCompleteFilePath(fileName), 
+                    out tResult, StreamingImageSequenceConstants.TEXTURE_TYPE_FULL) )
                 {
-                    if ( tResult.ReadStatus == 2 )
+                    if ( tResult.ReadStatus == StreamingImageSequenceConstants.READ_RESULT_SUCCESS )
                     {
                         m_param.m_collorArray[ii] = 0xffffffff;
                         loaded ++;

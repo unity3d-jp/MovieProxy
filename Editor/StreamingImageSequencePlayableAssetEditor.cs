@@ -5,17 +5,16 @@ using UnityEditor;
 using UnityEditor.StreamingImageSequence;
 using UnityEditor.Timeline;
 using UnityEngine.Timeline;
+using System.Collections.Generic;
 
 namespace UnityEngine.StreamingImageSequence {
     [CustomTimelineEditor(typeof(StreamingImageSequencePlayableAsset)), UsedImplicitly]
-    internal class MovieProxyPlayableAssetEditor : ClipEditor
+    internal class StreamingImageSequencePlayableAssetEditor : ClipEditor
     {
         private const string kNoFolderAssignedError = "No Folder assigned";
         private const string kNotStreamingAssetsFolderAssignedError = "Loading folder must be under Assets/StreamingAssets";
         private const string kFolderMissingError = "Assigned folder does not exist.";
         private const string kNoPicturesAssignedError = "No Pictures assigned";
-//        readonly Dictionary<TimelineClip, WaveformPreview> m_PersistentPreviews = new Dictionary<TimelineClip, WaveformPreview>();
-//        private ColorSpace m_ColorSpace = ColorSpace.Uninitialized;
 
         /// <inheritdoc/>
         public override ClipDrawOptions GetClipOptions(TimelineClip clip)
@@ -95,64 +94,42 @@ namespace UnityEngine.StreamingImageSequence {
             base.OnClipChanged(clip);
         }
 
+//----------------------------------------------------------------------------------------------------------------------
+
         /// <inheritdoc/>
-        public override void DrawBackground(TimelineClip clip, ClipBackgroundRegion region)
-        {
+        public override void DrawBackground(TimelineClip clip, ClipBackgroundRegion region) {
             base.DrawBackground(clip, region);
             
-//            if (!TimelineWindow.instance.state.showAudioWaveform)
-//                return;
-//
-//            var rect = region.position;
-//            if (rect.width <= 0)
-//                return;
-//
-//            var audioClip = clip.asset as AudioClip;
-//            if (audioClip == null)
-//            {
-//                var audioPlayableAsset = clip.asset as AudioPlayableAsset;
-//                if (audioPlayableAsset != null)
-//                    audioClip = audioPlayableAsset.clip;
-//            }
-//
-//            if (audioClip == null)
-//                return;
-//
-//            var quantizedRect = new Rect(Mathf.Ceil(rect.x), Mathf.Ceil(rect.y), Mathf.Ceil(rect.width), Mathf.Ceil(rect.height));
-//            WaveformPreview preview;
-//
-//            if (QualitySettings.activeColorSpace != m_ColorSpace)
-//            {
-//                m_ColorSpace = QualitySettings.activeColorSpace;
-//                m_PersistentPreviews.Clear();
-//            }
-//
-//            if (!m_PersistentPreviews.TryGetValue(clip, out preview) || audioClip != preview.presentedObject)
-//            {
-//                preview = m_PersistentPreviews[clip] = WaveformPreviewFactory.Create((int)quantizedRect.width, audioClip);
-//                Color waveColour = GammaCorrect(DirectorStyles.Instance.customSkin.colorAudioWaveform);
-//                Color transparent = waveColour;
-//                transparent.a = 0;
-//                preview.backgroundColor = transparent;
-//                preview.waveColor = waveColour;
-//                preview.SetChannelMode(WaveformPreview.ChannelMode.MonoSum);
-//                preview.updated += () => TimelineEditor.Refresh(RefreshReason.WindowNeedsRedraw);
-//            }
-//
-//            preview.looping = clip.SupportsLooping();
-//            preview.SetTimeInfo(region.startTime, region.endTime - region.startTime);
-//            preview.OptimizeForSize(quantizedRect.size);
-//
-//            if (Event.current.type == EventType.Repaint)
-//            {
-//                preview.ApplyModifications();
-//                preview.Render(quantizedRect);
-//            }
+            var rect = region.position;
+            if (rect.width <= 0)
+                return;
+
+            StreamingImageSequencePlayableAsset curAsset = clip.asset as StreamingImageSequencePlayableAsset;
+            if (null == curAsset)
+                return;
+
+            Rect quantizedRect = new Rect(Mathf.Ceil(rect.x), Mathf.Ceil(rect.y), Mathf.Ceil(rect.width), Mathf.Ceil(rect.height));
+
+            if (QualitySettings.activeColorSpace != m_colorSpace) {
+                m_colorSpace = QualitySettings.activeColorSpace;
+                m_persistentPreviews.Clear();
+            }
+
+            if (!m_persistentPreviews.TryGetValue(clip, out StreamingImageSequencePreview preview)) {
+                preview = m_persistentPreviews[clip] = new StreamingImageSequencePreview(curAsset);
+            }
+
+            if (Event.current.type == EventType.Repaint) {
+                preview.SetLocalTime(region.startTime, region.endTime);
+                preview.Render(quantizedRect);
+            }
         }
 
-//        private static Color GammaCorrect(Color color)
-//        {
-//            return (QualitySettings.activeColorSpace == ColorSpace.Linear) ? color.gamma : color;
-//        }
+//----------------------------------------------------------------------------------------------------------------------
+        readonly Dictionary<TimelineClip, StreamingImageSequencePreview> m_persistentPreviews 
+            = new Dictionary<TimelineClip, StreamingImageSequencePreview>();
+
+        ColorSpace m_colorSpace = ColorSpace.Uninitialized;
+
     }
 }
